@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Visitor Pass Management System",
+  "homepage": "https://github.com/AbidShaikh86/-Visiter-Pass-Management-System#readme",
+  "bugs": {
+    "url": "https://github.com/AbidShaikh86/-Visiter-Pass-Management-System/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbidShaikh86/-Visiter-Pass-Management-System.git"
+  },
+  "license": "ISC",
+  "author": "Abid Shaikh",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
