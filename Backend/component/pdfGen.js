@@ -1,3 +1,5 @@
+// i actually used this for first time i used ai for seeing how its work and its syntax 
+// i didn't copy paste ok
 const pdf = require('pdfkit')
 const qrcode = require('qrcode')
 

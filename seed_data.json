@@ -1,0 +1,40 @@
+{
+    "user": [
+        {
+            "name":"admin",
+            "email":"admin@vms.com",
+            "password": "admin123",
+            "role": "admin"
+        },
+        {
+            "name":"Abid Bhai",
+            "email":"abidbhai507@gmail.com",
+            "password": "Abid@1234",
+            "role": "admin"
+        },
+        {
+            "name":"emp1",
+            "email":"employee1@vms.com",
+            "password": "emp@123",
+            "role": "employee"
+        },
+        {
+            "name":"emp2",
+            "email":"employee2@vms.com",
+            "password": "emp@123",
+            "role": "employee"
+        },
+        {
+            "name":"security1",
+            "email":"security1@vms.com",
+            "password": "security@123",
+            "role": "security"
+        },
+        {
+            "name":"emp3",
+            "email":"employee3@vms.com",
+            "password": "emp@123",
+            "role": "employee"
+        }
+    ]
+}
