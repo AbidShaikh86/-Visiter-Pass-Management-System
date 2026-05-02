@@ -3,18 +3,17 @@ const express = require('express');
 const { bookAppointment, getStatus, checkLogs, getAppointments } = require('../controller/appt');
 const apptModel = require('../model/apptModel');
 const createPDF = require('../component/pdfGen')
+const upload = require('../component/upload')
 let authorize = require('../auth/auth')
 
 // creating router
 const Router = express.Router()
-// authorization middleware for checking the role of user
-authorize = (roles) => (req, res, next) => next();
 
 // routes for appointment booking
-Router.post('/register',bookAppointment)
+Router.post('/register', authorize(['visitor']), upload, bookAppointment)
 
 // route for getting all the appointments
-Router.get('/', getAppointments)
+Router.get('/', authorize(['visitor', 'employee', 'admin', 'security']), getAppointments)
 
 // route for changing the status of appointment
 Router.patch('/status/:id', authorize(['employee','admin']),getStatus)

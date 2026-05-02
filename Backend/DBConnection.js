@@ -7,7 +7,7 @@ function DBConnection(){
     const DB_URL = process.env.MONGO_URI
 
     // connecting to database using mongoose connect function
-    mongoose.connect(DB_URL)
+    mongoose.connect(DB_URL);
     const db = mongoose.connection;
 
     db.on("error",console.error.bind(console,'Connection Error'))

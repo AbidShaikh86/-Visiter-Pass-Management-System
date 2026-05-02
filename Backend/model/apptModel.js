@@ -11,6 +11,9 @@ const apptSchema = new Schema({
         type: String,
         required: true
     },
+    visitor_photo: {
+        type: String
+    },
     hostId: {
         type: Schema.Types.ObjectId,
         ref: "User"

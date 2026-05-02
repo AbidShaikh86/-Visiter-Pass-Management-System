@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 // Database connection import 
 const DBConnection = require('./DBConnection')
 const cors = require('cors')
+const path = require('path')
 
 // user Routes for login and signup 
 const userRoutes = require('./routes/userRoutes')
@@ -18,6 +19,7 @@ const app = express();
 // cors for bypassing browser cors error
 app.use(cors())
 app.use(express.json())
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // running database connection function that imported early 
 DBConnection();

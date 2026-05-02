@@ -1,5 +1,6 @@
 const express = require('express');
 const { signUpUser, loginUser, getHosts } = require('../controller/user');
+const authorize = require('../auth/auth')
 
 const Router = express.Router();
 
@@ -10,6 +11,6 @@ Router.post('/sign-in',signUpUser)
 Router.post('/log-in',loginUser)
 
 // route for getting all the hosts
-Router.get('/hosts', getHosts)
+Router.get('/hosts', authorize(['visitor']), getHosts)
 
 module.exports = Router

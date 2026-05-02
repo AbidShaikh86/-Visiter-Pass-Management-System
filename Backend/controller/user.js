@@ -14,22 +14,22 @@ exports.signUpUser = async (req, res) => {
 
     // Validating input fields
     if(!name || !email || !phone || !password || !role){
-        res.json({ message: "All Fields are Mandatory!!" });
-        return;
+        return res.json({ message: "All Fields are Mandatory!!" });
+        
     }
     // Validating email format and checking password is Strong or not
     if(!validator.isEmail(email)){
-        res.json({ message: "Email is not Valid!!" })
-        return;
+        return res.json({ message: "Email is not Valid!!" })
+        
     }
     if(!validator.isStrongPassword(password)){
-        res.json({ message: "Please Provide Strong Password!!" })
-        return;
+        return res.json({ message: "Please Provide Strong Password!!" })
+        
     }
 
     // If email already exists than sending message
     if(exist){
-        res.json({ message: "Email Alreay Exist!" })
+        return res.json({ message: "Email Alreay Exist!" })
     }
 
     // Hashing the password before saving to database
@@ -41,10 +41,10 @@ exports.signUpUser = async (req, res) => {
         const user = await userModel.create({name, email, phone, password: hash, role})
     }catch(error){
         // Handling any errors during user inserting in database
-        throw Error("Database Error: User not Created!!")
+        res.status(500).json({ message: "Database Error: User not Created!!" });
     }
     // Sending response with the created user details
-    res.json(exist)
+    res.json(user)
 }
 
 // Controller for handling user login
@@ -57,8 +57,8 @@ exports.loginUser = async (req, res) => {
 
     // checking if email exist or true
     if(!exist){
-        res.json({ message: "Incorrect Email!!" })
-        return;
+        return res.json({ message: "Incorrect Email!!" })
+        
     }
 
     // Comparing provided password with the hashed password in the database
@@ -66,7 +66,7 @@ exports.loginUser = async (req, res) => {
 
     // If password does not match, sending error message
     if(!match){
-        res.json({ message: "Incorrect Password!!" })
+        return res.json({ message: "Incorrect Password!!" })
     }
 
     // Generating JWT token for authenticated user

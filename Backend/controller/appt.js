@@ -1,18 +1,29 @@
 // Schema for Booking Appointments
 const apptModel = require('../model/apptModel')
+const userModel = require('../model/userModel')
+const sendEmail = require('../component/email')
 
 // Controller for handling appointment Booking 
 exports.bookAppointment = async (req, res) => {
     // Extracting visitor name, email, and host ID from the request body
     const { name, email, hostId } = req.body;
+    const photo = req.file ? req.file.path : null;
 
     try {
         // Creating a new appointment document in the database 
         const newAppt = await apptModel.create({ 
             visitor_name: name, 
             visitor_email: email, 
+            visitor_photo: photo,
             hostId: hostId 
         });
+
+        // Send email to host
+        const host = await userModel.findById(hostId);
+        if (host) {
+            sendEmail(host.email, 'New Appointment Request', `You have a new appointment request from ${name} (${email}).`);
+        }
+
         // Sending response with the newly created appointment 
         res.status(201).json(newAppt);
         
@@ -32,6 +43,11 @@ exports.getStatus = async (req, res) => {
 
     // Updating the appointment status
     const data = await apptModel.findByIdAndUpdate(id, {status: status}, {new: true})
+
+    // Send email to visitor
+    if (data) {
+        sendEmail(data.visitor_email, 'Appointment Status Update', `Your appointment has been ${status}.`);
+    }
 
     // Sending response with the updated appointment data
     res.json(data)
