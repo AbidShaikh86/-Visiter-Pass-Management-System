@@ -10,10 +10,14 @@
 7. `npm install pdfkit`
 8. `npm install qrcode `
 9. `npm install validator`
+10. `npm install nodemailer`
+11. `npm install multer`
+12. `npm install mongoDB`
 
 ## for frontend
 1. `npm install react-router-dom`
 2. `npm install axios`
+3. `npm install html5-qrcode`
 
 # to start in project you have to start to terminals one for backend and one for frontend
 
